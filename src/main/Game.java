@@ -23,10 +23,11 @@ import javax.swing.OverlayLayout;
 
 import main.saving.Date;
 import panels.ChooseMapForEditorPanel;
-import panels.ChooseMapForPlayingPanel;
+import panels.ConnectToServerPanel;
 import panels.LoadingPanel;
 import panels.MenuPanel;
 import panels.SavingPanel;
+import panels.StartServerPanel;
 import GUI.GUI;
 import entity.mob.Creator;
 
@@ -40,6 +41,14 @@ public class Game extends Canvas implements Runnable
     
     public static int WIDTH = (int) (basicHEIGHT*scale);
     public static int HEIGHT = (int) (basicWIDTH*scale);
+    
+    //TODO
+    protected static Connector connector;    
+    protected static boolean createServerConnector()
+    {
+    	connector = new Connector();
+    	return false;
+    }
     
     private static void onScaleChanged()
     {
@@ -280,7 +289,6 @@ public class Game extends Canvas implements Runnable
 			PrintString.println("Saved successfully");
 		} catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -299,11 +307,9 @@ public class Game extends Canvas implements Runnable
 			nextTime = System.nanoTime();
 		} catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ReflectiveOperationException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -376,21 +382,21 @@ public class Game extends Canvas implements Runnable
         int bwidth = 3*basicWIDTH/5;
         int range = (Toolkit.getDefaultToolkit().getScreenSize().height - 5 * bheight)/6;
         menu.setLayout(new FlowLayout(FlowLayout.CENTER, 100, range));
-        JButton contin = new JButton("Continue");
-        JButton start = new JButton("Start");
+        JButton startServer = new JButton("Run server");
+        JButton start = new JButton("Connect to the server");
         JButton about = new JButton("About");
         JButton editor = new JButton("Editor");
         JButton exit = new JButton("Exit");
         
         Dimension button = new Dimension(bwidth, bheight);
         
-        contin.setPreferredSize(button);
-        contin.setMinimumSize(button);
-        contin.setMaximumSize(button);
-        contin.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        contin.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+        startServer.setPreferredSize(button);
+        startServer.setMinimumSize(button);
+        startServer.setMaximumSize(button);
+        startServer.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        startServer.setAlignmentY(JComponent.CENTER_ALIGNMENT);
         
-        contin.setEnabled(new File("autosave.dat").exists());
+//        startServer.setEnabled(new File("autosave.dat").exists());
         
         start.setPreferredSize(button);
         start.setMinimumSize(button);
@@ -409,6 +415,7 @@ public class Game extends Canvas implements Runnable
         about.setMaximumSize(button);
         about.setAlignmentX(JComponent.CENTER_ALIGNMENT);        
         about.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+        about.setEnabled(false);
         
         exit.setPreferredSize(button);
         exit.setMinimumSize(button);
@@ -416,18 +423,44 @@ public class Game extends Canvas implements Runnable
         exit.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         exit.setAlignmentY(JComponent.CENTER_ALIGNMENT);
         
-        contin.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent ae)
-            {
-         	   startGame("autosave.dat");
-            }
-         });
+        startServer.addActionListener(new ActionListener(){        	
+        	public void actionPerformed(ActionEvent ae)
+        	{
+        		frame.remove(menu);
+        		frame.add(new StartServerPanel());
+        		frame.setVisible(true);
+        		
+        		if(Game.createServerConnector())
+        		{
+        			try
+					{
+        				//TODO
+						startGame(Date.load("resources/maps/1.dat"));
+					} catch (IOException e)
+					{
+						e.printStackTrace();
+					} catch (ReflectiveOperationException e)
+					{
+						e.printStackTrace();
+					}
+        		}
+        		else
+        		{
+        			
+        		}
+        	}
+        });
         
+        //TODO
         start.addActionListener(new ActionListener(){
-           public void actionPerformed(ActionEvent ae)
-           {
-        	   throwFlowingFrame(new ChooseMapForPlayingPanel());
-           }
+        	public void actionPerformed(ActionEvent ae)
+        	{
+        		frame.remove(menu);
+        		frame.add(new ConnectToServerPanel());
+        		frame.setVisible(true);
+        		
+        		
+        	}
         });
         
         editor.addActionListener(new ActionListener(){
@@ -436,15 +469,13 @@ public class Game extends Canvas implements Runnable
         	{
                 throwFlowingFrame(new ChooseMapForEditorPanel());
         	}
-        });
-        
-        about.addActionListener(new ActionListener()
-        {
-           public void actionPerformed(ActionEvent ae)
-           {
-               // smth about game
-           }
-        });
+        });        
+        about.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent ae)
+        	{
+        		// smth about game
+        	}
+        });        
         exit.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
@@ -452,7 +483,7 @@ public class Game extends Canvas implements Runnable
                 System.exit(0);
             }
         });
-        menu.add(contin);
+        menu.add(startServer);
         menu.add(start);
         menu.add(editor);
         menu.add(about);
