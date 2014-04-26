@@ -66,6 +66,7 @@ public class Date
 		w.close();
 	}
 
+	/** Example: Date.load("resources/maps/level.dat"); */
 	public static World load(String name) throws IOException, ReflectiveOperationException
 	{
 		World world = new World();
