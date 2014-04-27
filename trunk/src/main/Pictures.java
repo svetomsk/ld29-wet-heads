@@ -15,8 +15,7 @@ import javax.imageio.ImageIO;
 public class Pictures 
 {
 	public static Image roll[] = loadAndCut("resources/roll.png", 6, 256);
-    public static Image creator[] = loadAndCut("resources/creator.png", 6, 256);
-    
+	public static Image creator[] = loadAndCut("resources/creator.png", 6, 256);
     
     public static Image angel[] = loadAndCut("resources/angel.png", 6, 64);
     public static Image chest[] = loadAndCut("resources/chest.png", 6, 32);
@@ -31,6 +30,8 @@ public class Pictures
     
     public static Image greenPlayer;
     public static Image purplePlayer;
+    public static Image greenBubble[] = loadAndCut("resources/greenBubble.png", 1, 32);
+    public static Image purpleBubble[] = loadAndCut("resources/purpleBubble.png", 1, 32);
     
     public Pictures()
     {

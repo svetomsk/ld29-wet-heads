@@ -9,10 +9,11 @@ import java.awt.Image;
 import main.Game;
 import main.Input;
 import main.Pictures;
+import main.PrintString;
 import main.World;
-import panels.LoadingPanel;
-import panels.MenuPanel;
-import panels.SavingPanel;
+import weapon.BubbleGun;
+import weapon.Weapon;
+import entity.GreenBubble;
 import entity.mob.Mob;
 import entity.mob.controllers.Controller;
 import entity.mob.mignons.DarkMignon;
@@ -22,50 +23,46 @@ public class GUI extends Controller
 {
 	protected Input input;
 	public boolean stepState = true;
-	private Item leftHand;
+	private Weapon weapon;
 	
 	public GUI(Mob mob, Input input) 
 	{
 		super(mob);
 		this.input = input;
 //		leftHand = new SwordItem(mob);
-	}	
+	}
+	
 	@Override
 	public void tick()
 	{
+		long x = getWorldX();
+		long y = getWorldY();
+		double angle = getAngle();
+		
         //walk
         if(input.right.down) mob.onRight();
         else if(input.left.down) mob.onLeft();
         //jump
         if(input.up.down) mob.onUp();
-        
         if(input.shift.typed) mob.shift();
         
-        //heal
-        if(input.heal.down)//typed)
+    	//----------------------------------------------------------
+        if(input.c1.typed)
         {
-        	heal();
+        	weapon = new BubbleGun(GreenBubble.class); 
         }
         
-    	//----------------------------------------------------------
-        
-		if(input.wheelClicked)
-		{
-//			new DamageMignonSeed((input.x+Game.x), (input.y+Game.y), mob.getWorld());
-//			new JumpMignon((input.x+Game.x), (input.y+Game.y), mob.getWorld(), mob);
-//			new DamageMignon((input.x+Game.x), (input.y+Game.y), mob.getWorld(), mob);
-//			new Zombie((input.x+Game.x), (input.y+Game.y), mob.getWorld());
-//			new SwordItem((input.x+Game.x), (input.y+Game.y), mob.getWorld());
-//			new Wind((input.x+Game.x), (input.y+Game.y), mob.getWorld());
-		}
-		if(input.lmbClicked)
-		{
-			floakState((long)(input.x*Game.scale+Game.x), (long)(input.y*Game.scale+Game.y));
-		}
-		if(input.rmb)
-		{
-			floakFollow((long)(input.x*Game.scale+Game.x), (long)(input.y*Game.scale+Game.y));
-		}
+        if(weapon != null)
+        {
+        	if(input.wheelClicked)
+        	{
+        		
+        	}
+        	if(input.lmb)
+        	{
+        		weapon.use(getWorld(), getMobCX(), getMobCY(), angle);
+        	}
+        }
 		if(input.space.typed)
 		{
 			floakReturn();
@@ -176,7 +173,26 @@ public class GUI extends Controller
 			g.drawString("Map testing", Game.basicWIDTH/2, 10);
 		}
 	}
-	
+
+	public long getWorldX()
+	{
+		double x = (getMobCY()>0 ? Game.WIDTH-Game.scale*input.x : Game.scale*input.x);
+		return (long) (Game.x+x);
+	}
+	public long getWorldY()
+	{
+		double y = (getMobCY()>0 ? Game.HEIGHT-Game.scale*input.y : Game.scale*input.y);
+		return (long) (Game.y+y);
+	}
+	public double getAngle()
+	{
+		double angle = Mob.getAngle(getWorldX()-getMobCX(), getWorldY()-getMobCY())+Math.PI/2;
+		return angle;
+	}
+	public Weapon getWeapon()
+	{
+		return weapon;
+	}
 	public World getWorld()
 	{
 		return mob.getWorld();

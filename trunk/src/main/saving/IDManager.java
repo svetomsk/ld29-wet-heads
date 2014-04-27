@@ -17,6 +17,7 @@ import block.decor.Ghost_Rock;
 import block.decor.Wood;
 import entity.Chest;
 import entity.End;
+import entity.GreenBubble;
 import entity.mob.Angel;
 import entity.mob.ArchAngel;
 import entity.mob.Butterfly;
@@ -44,6 +45,7 @@ public class IDManager
 			
 			put(65, Chest.class);
 			put(66, End.class);
+			put(67, GreenBubble.class);
 
 			put(129, DamageMignon.class);
 			put(130, DarkMignon.class);
@@ -70,6 +72,7 @@ public class IDManager
 			
 			put(Chest.class, 65);
 			put(End.class, 66);
+			put(GreenBubble.class, 67);
 
 			put(DamageMignon.class, 129);
 			put(DarkMignon.class, 130);

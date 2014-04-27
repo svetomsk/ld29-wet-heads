@@ -74,6 +74,11 @@ public class Input
 	public Key save = new Key(this).bind(KeyEvent.VK_F6);
 	public Key load = new Key(this).bind(KeyEvent.VK_F7);
 	public Key test = new Key(this).bind(KeyEvent.VK_T);
+	
+	public Key c1 = new Key(this).bind(KeyEvent.VK_1);
+	public Key c2 = new Key(this).bind(KeyEvent.VK_2);
+	public Key c3 = new Key(this).bind(KeyEvent.VK_3);
+	public Key c4 = new Key(this).bind(KeyEvent.VK_4);
 
 	public Input()
 	{

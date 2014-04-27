@@ -90,7 +90,7 @@ public class Character extends Mob
 //		stamina -= 150;
 //	}
 	
-	private Image img;
+	protected Image img;
     @Override
     protected void initPictures() 
     {    	
