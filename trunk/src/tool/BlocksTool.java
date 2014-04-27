@@ -34,7 +34,7 @@ public class BlocksTool extends Tool
 		if(isl == null) return;
 		int bx = (int) ((x-isl.getX())/world.BLOCK_SIZE);
 		int by = (int) ((y-isl.getY())/world.BLOCK_SIZE);
-		int r = (int) (Game.scale*10-8);
+		int r = Game.paintScale;
 		
 		int dx = world.BLOCK_SIZE/2;
 				
