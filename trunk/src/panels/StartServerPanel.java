@@ -14,7 +14,7 @@ public class StartServerPanel extends JPanel
 	public StartServerPanel()
 	{
     	super();
-    	Dimension dim = new Dimension(Game.basicHEIGHT, Game.basicWIDTH);
+    	Dimension dim = new Dimension(Game.basicWIDTH, Game.basicHEIGHT);
     	setPreferredSize(dim);
     	
     	int countOfButtons = 3;

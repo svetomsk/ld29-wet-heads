@@ -246,6 +246,7 @@ public class World
 		
 //		g.setColor(Color.ORANGE);
 //		g.fillOval(-10 - Game.x, -10 - Game.y, 20, 20);
+//		
 //		g.setColor(Color.BLACK);
 //		g.fillOval(-8 - Game.x, -8 - Game.y, 16, 16);
 	}

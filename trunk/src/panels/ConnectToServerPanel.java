@@ -4,32 +4,60 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.Game;
+
 public class ConnectToServerPanel extends JPanel{
-    private int width = 512;
-    private int height = 64;
+    private int width = 400;
+    private int height = 640;
     private JTextField ip;
     private JLabel message;
     private JButton ok, cancel;
     
     public ConnectToServerPanel()
     {
-        setPreferredSize(new Dimension(width, height));
-        setLayout(new FlowLayout());
-        setAlignmentX(CENTER_ALIGNMENT);
-
+        setPreferredSize(new Dimension(width, height));        
+        setLayout(new FlowLayout());        
         createComponents();
         addComponents();
+        addKeyListener(new KeyListener()
+		{
+			
+			@Override
+			public void keyTyped(KeyEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.getKeyCode() == e.VK_ESCAPE)
+				{
+					quit();
+				}
+			}
+		});
     }
     
     private void createComponents()
     {
-        message = new JLabel("Enter your IP-address: ");
+        message = new JLabel("Enter server's IP-address: ");
         
         ip = new JTextField(10);
         
@@ -37,12 +65,16 @@ public class ConnectToServerPanel extends JPanel{
         ok.setPreferredSize(new Dimension(90, 30));
         ok.addActionListener(new ActionListener() 
         {
-
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) 
+            {
                 String s = ip.getText();
                 ip.setText("");
-                //connect action
+                
+                if(Game.connectToIP(s)) Game.startGameAsClient();
+                
+                //TODO connect action
+                
             }
             
         });
@@ -53,8 +85,9 @@ public class ConnectToServerPanel extends JPanel{
         {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                //cancel action
+            public void actionPerformed(ActionEvent e) 
+            {
+            	quit();
             }
             
         });
@@ -66,5 +99,9 @@ public class ConnectToServerPanel extends JPanel{
         add(ip);
         add(ok);
         add(cancel);
+    }
+    private void quit()
+    {
+    	Game.toMainMenu();
     }
 }
