@@ -162,8 +162,10 @@ public class Entity {
 		}
 	}
 	protected void updateVelocity()
-	{    	
-        lvy += world.GRAVITY;
+	{   
+		if(y < 0) lvy += world.GRAVITY;
+		else lvy -= world.GRAVITY;
+        
         if(Math.abs(lvx) < 1) lvx = 0;
         slowly();
 	}

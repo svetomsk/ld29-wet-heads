@@ -72,7 +72,7 @@ public class Game extends Canvas implements Runnable
     {
     	if(input.shift.down)
     	{
-    		paintScale += Math.signum(value);
+    		paintScale -= Math.signum(value);
     		if(paintScale < 0) paintScale = 0;
     		PrintString.println(""+paintScale);
     	}
