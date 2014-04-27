@@ -30,6 +30,7 @@ import panels.SavingPanel;
 import panels.StartServerPanel;
 import GUI.GUI;
 import entity.mob.Creator;
+import main.Connector;
 
 public class Game extends Canvas implements Runnable
 {
@@ -47,9 +48,15 @@ public class Game extends Canvas implements Runnable
     protected static boolean createServerConnector()
     {
     	connector = new Connector();
-    	return false;
+    	return connector.TYPE == Connector.CONNECTOR_TYPE_SERVER;
     }
-    
+	public static boolean connectToIP(String s)
+	{
+		connector = new Connector(s);
+		return connector.TYPE == Connector.CONNECTOR_TYPE_CLIENT;
+	}
+	
+	
     private static void onScaleChanged()
     {
     	int dx = (int) (WIDTH - basicWIDTH*scale);
@@ -245,10 +252,13 @@ public class Game extends Canvas implements Runnable
             
             world.draw(g);
             
+            g.setColor(Color.ORANGE);
+            g.drawLine(-x-160000, -y, -x+160000, -y);
 //            g.setColor(new Color((float)(1-world.character.hp), (float)world.character.hp, (float)0.0));
 //            g.fillRect(32, 32, (int)(world.character.hp * WIDTH/3), 8);
             
             g.scale(scale, scale);
+            
             
             gui.draw(g);
             PrintString.drawPrinting(g);
@@ -315,7 +325,7 @@ public class Game extends Canvas implements Runnable
 	}
     public static JFrame frame, flowingFrame, flowingFrame2;
     public static int FFRAME1 = 1, FFRAME2 = 2; 
-    private static JPanel menu, main, death, end;
+    private static JPanel menu, main, death, end, connectToServerPanel;
     private static Game gameComponents;
     
     public static void removeFlowingFrame()
@@ -456,9 +466,9 @@ public class Game extends Canvas implements Runnable
         	public void actionPerformed(ActionEvent ae)
         	{
         		frame.remove(menu);
-        		frame.add(new ConnectToServerPanel());
+        		connectToServerPanel = new ConnectToServerPanel();
+        		frame.add(connectToServerPanel);
         		frame.setVisible(true);
-        		
         		
         	}
         });
@@ -521,9 +531,11 @@ public class Game extends Canvas implements Runnable
             frame.remove(gameComponents);
             frame.remove(main);       
             frame.remove(death);
+            if(connectToServerPanel != null) frame.remove(connectToServerPanel);
+            
             gameComponents.stop();
             
-            if(creator == null)
+            if(creator == null && world != null)
             {
             	save("autosave.dat");
             }
@@ -682,12 +694,19 @@ public class Game extends Canvas implements Runnable
     public static void startGame(World world)
     {
     	frame.remove(menu);
+    	if(connectToServerPanel != null) frame.remove(connectToServerPanel);
+    	
 		gameComponents = new Game(Toolkit.getDefaultToolkit().getScreenSize());
 		frame.add(gameComponents);
 		gameComponents.init(world);
 		gameComponents.start();
 		getGUI().stepState = false;
 		frame.setVisible(true);
+    }
+    public static void startGameAsClient()
+    {
+    	
+    	
     }
     public static void main(String [] args)
     {
