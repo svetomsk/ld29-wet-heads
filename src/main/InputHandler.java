@@ -138,7 +138,7 @@ class InputHandler implements MouseListener, MouseMotionListener, KeyListener, M
     public void mouseWheelMoved(MouseWheelEvent e) 
     {
     	double rotation = e.getPreciseWheelRotation();
-    	Game.scale(rotation);
+    	Game.scale(rotation);    	
     }
     
     public void free()

@@ -39,6 +39,7 @@ public class Game extends Canvas implements Runnable
     
     public static double scale = 1;
     public static double perfectScale = 1;
+    public static int paintScale = 0;
     
     public static int WIDTH = (int) (basicHEIGHT*scale);
     public static int HEIGHT = (int) (basicWIDTH*scale);
@@ -69,8 +70,15 @@ public class Game extends Canvas implements Runnable
     }
     public static void scale(double value)
     {
-    	if ( gui.getClass() == GUI.class && ( ( perfectScale >= 1.2 && value >= 0 ) || ( perfectScale <= 0.8 && value <= 0) ) ) return;
+    	if(input.shift.down)
+    	{
+    		paintScale += Math.signum(value);
+    		if(paintScale < 0) paintScale = 0;
+    		PrintString.println(""+paintScale);
+    	}
     	
+    	
+    	if ( gui.getClass() == GUI.class && ( ( perfectScale >= 1.2 && value >= 0 ) || ( perfectScale <= 0.8 && value <= 0) ) || input.shift.down) return; 
     	perfectScale += value/10;
     	onScaleChanged();
     }
@@ -325,7 +333,7 @@ public class Game extends Canvas implements Runnable
 	}
     public static JFrame frame, flowingFrame, flowingFrame2;
     public static int FFRAME1 = 1, FFRAME2 = 2; 
-    private static JPanel menu, main, death, end, connectToServerPanel;
+    private static JPanel menu, main, death, end, connectToServerPanel, startServerPanel ;
     private static Game gameComponents;
     
     public static void removeFlowingFrame()
@@ -437,11 +445,12 @@ public class Game extends Canvas implements Runnable
         	public void actionPerformed(ActionEvent ae)
         	{
         		frame.remove(menu);
-        		frame.add(new StartServerPanel());
+        		startServerPanel = new StartServerPanel(); 
+        		frame.add(startServerPanel);
         		frame.setVisible(true);
         		
-        		if(Game.createServerConnector())
-        		{
+//        		if(Game.createServerConnector())
+//        		{
         			try
 					{
         				//TODO
@@ -453,11 +462,11 @@ public class Game extends Canvas implements Runnable
 					{
 						e.printStackTrace();
 					}
-        		}
-        		else
-        		{
-        			
-        		}
+//        		}
+//        		else
+//        		{
+//        			
+//        		}
         	}
         });
         
@@ -532,6 +541,7 @@ public class Game extends Canvas implements Runnable
             frame.remove(main);       
             frame.remove(death);
             if(connectToServerPanel != null) frame.remove(connectToServerPanel);
+            if(startServerPanel != null) frame.remove(startServerPanel);
             
             gameComponents.stop();
             
