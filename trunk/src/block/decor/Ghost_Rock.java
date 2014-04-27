@@ -23,6 +23,6 @@ public class Ghost_Rock extends Rock{
 	@Override
 	public Color getColor()
 	{
-		return Color.decode("#7f7f7e");
+		return Color.decode("#4f4f4e");
 	}
 }
