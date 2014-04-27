@@ -7,7 +7,7 @@ public class Purple extends Block{
 	public static final double elasticity = 0;
 	public static final int damage = 0;
 	public int strength = 1;
-	public static Color color = Color.decode("#a349a4");
+	public static Color color = Color.decode("#4C243D");
 	public static final boolean collidable = true;
 	
 	public Purple()

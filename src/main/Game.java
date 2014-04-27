@@ -255,18 +255,25 @@ public class Game extends Canvas implements Runnable
             Graphics2D g =(Graphics2D) bs.getDrawGraphics();
             g.setColor(Color.WHITE);
             g.fillRect(0, 0, getWidth(), getHeight());
-
             
             if(getGUI().getMobCY() >= 0)
             {
             	g.rotate(Math.PI, basicWIDTH/2, basicHEIGHT/2);
             }
-            g.scale(1/scale, 1/scale);            
-            world.draw(g);           
+            
+            g.setColor(new Color((int)(0x4C243D)));
+        	g.fillRect(0, -(int)(y/scale), basicWIDTH, 160000);
+        	
+        	g.setColor(new Color((int)(0x49903B)));
+        	g.rotate(Math.PI, basicWIDTH/2, -(int)(y/scale));
+        	g.fillRect(0, -(int)(y/scale), basicWIDTH, 160000);
+        	g.rotate(Math.PI, basicWIDTH/2, -(int)(y/scale));
+            
+            g.scale(1/scale, 1/scale);
+            world.draw(g);          
             
             g.setColor(Color.ORANGE);
             g.drawLine(-x-160000, -y, -x+160000, -y);
-            
                         
             g.scale(scale, scale);
             if(getGUI().getMobCY() >= 0)
@@ -279,7 +286,6 @@ public class Game extends Canvas implements Runnable
             
             g.setColor(Color.BLACK);
             g.drawString(frames, basicWIDTH - frames.length() * 12, 12);
-
             
             g.dispose();
             bs.show();
