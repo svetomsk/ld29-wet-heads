@@ -67,14 +67,6 @@ public class Character extends Mob
 		super.tick();
 		if(stamina < maxStamina) stamina++;;
 	}
-	
-	
-    @Override
-    public void onUp() 
-    {
-    	super.onUp();
-    	lvy-=0.7;
-    }
     
     private static double shiftPower = 100;
     @Override
@@ -86,8 +78,11 @@ public class Character extends Mob
 //		if(r == 0) return;
 //		double dx = lvx / r;
 //		double dy = lvy / r;
+		
 		lvx += shiftPower*Math.signum(lvx);
+		
 //		lvy += shiftPower * dy;
+		
 		stamina -= 150;
 	}
 	
@@ -103,20 +98,13 @@ public class Character extends Mob
     	int drawx = (int) (x-Game.x+width/2);
     	int drawy = (int) (y-Game.y+height/2);
 
-		double angle = getAngle(lvx, lvy);
+//		double angle = getAngle(lvx, lvy);
 		  
-		g.rotate(angle, drawx, drawy);
+//		g.rotate(angle, drawx, drawy);
 		g.drawImage(img[currentFrame], drawx-img[currentFrame].getWidth(null)/2, drawy-img[currentFrame].getHeight(null)/2, null);
-		g.rotate(-angle, drawx, drawy);
+//		g.rotate(-angle, drawx, drawy);
         
 //        double angle = getAngle(control.getX()-drawx, control.getY()-drawy)+Math.PI/2;
-        
-//        Image eye = control.getX()-drawx >= 0 ? Pictures.eye_right : Pictures.eye_left;
-//        if(control.getX()-drawx < 0 ) angle -= Math.PI;
-//        
-//        g.rotate(angle, drawx, drawy);
-//        g.drawImage(eye, drawx-width/2, drawy-height/2, null);
-//        g.rotate(-angle, drawx, drawy);
         
 //        super.draw(g);
 		
@@ -131,12 +119,12 @@ public class Character extends Mob
     @Override
 	public double getSpeed()
 	{
-		return 9;
+		return 15;
 	}
     @Override
 	public double getJumpPower()
 	{
-		return 13;
+		return 18;
 	}
     @Override
 	public int getMaxHP()

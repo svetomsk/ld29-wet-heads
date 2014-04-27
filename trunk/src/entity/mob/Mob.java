@@ -154,7 +154,11 @@ public class Mob extends Entity{
 	}
 	public void onUp()
 	{
-		if(onGround) lvy -= getJumpPower();
+		if(onGround)
+		{
+			if(getY() < 0) lvy -= getJumpPower();
+			else lvy += getJumpPower();
+		}
 	}
 	public void onDown()
 	{
