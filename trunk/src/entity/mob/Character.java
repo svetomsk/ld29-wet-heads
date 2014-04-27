@@ -1,6 +1,11 @@
 package entity.mob;
 
+import java.awt.Canvas;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.AreaAveragingScaleFilter;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageObserver;
 
 import main.Game;
 import main.Pictures;
@@ -61,11 +66,14 @@ public class Character extends Mob
 	
 	private int stamina = 0;
 	private static int maxStamina = 240;
+	
+	int time = 0;
 	@Override
 	public void tick()
 	{
 		super.tick();
 		if(stamina < maxStamina) stamina++;;
+		time++;		
 	}
     
     private static double shiftPower = 100;
@@ -85,13 +93,14 @@ public class Character extends Mob
 		
 		stamina -= 150;
 	}
-	
+	private Image img;
     @Override
     protected void initPictures() 
-    {
-    	img = Pictures.roll;
+    {    	
+    	img = Pictures.greenPlayer;
     	super.initPictures();
     }
+    int amplitude = 8;
     @Override
     public void draw(Graphics2D g)
     {
@@ -101,11 +110,11 @@ public class Character extends Mob
 //		double angle = getAngle(lvx, lvy);
 		  
 //		g.rotate(angle, drawx, drawy);
-		g.drawImage(img[currentFrame], drawx-img[currentFrame].getWidth(null)/2, drawy-img[currentFrame].getHeight(null)/2, null);
+		g.drawImage(img, drawx-img.getWidth(null)/2,
+				(int) (amplitude*Math.sin(Math.PI*time/20))-4 + drawy - img.getHeight(null)/2,
+				null);
 //		g.rotate(-angle, drawx, drawy);
-        
 //        double angle = getAngle(control.getX()-drawx, control.getY()-drawy)+Math.PI/2;
-        
 //        super.draw(g);
 		
 //		drawBounds(g);

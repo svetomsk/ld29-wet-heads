@@ -145,18 +145,20 @@ public class Mob extends Entity{
 	public void onRight()
 	{
 		choosenDir = 1;
-		lvx++;
+		if(getCY() > 0) lvx--;
+		else lvx++;
 	}
 	public void onLeft()
 	{
 		choosenDir = -1;
-		lvx--;
+		if(getCY() > 0) lvx++;
+		else lvx--;
 	}
 	public void onUp()
 	{
 		if(onGround)
 		{
-			if(getY() < 0) lvy -= getJumpPower();
+			if(getCY() < 0) lvy -= getJumpPower();
 			else lvy += getJumpPower();
 		}
 	}
