@@ -56,6 +56,8 @@ public class GreenBubble extends Entity
 	{
 		super.interactOn(e);
 
+		if(e instanceof GreenBubble) return;
+		
 		e.x -= e.getLVX();
 		e.y -= e.getLVY();
 		

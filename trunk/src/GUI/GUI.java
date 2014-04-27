@@ -9,9 +9,9 @@ import java.awt.Image;
 import main.Game;
 import main.Input;
 import main.Pictures;
-import main.PrintString;
 import main.World;
 import weapon.BubbleGun;
+import weapon.Jumper;
 import weapon.Weapon;
 import entity.GreenBubble;
 import entity.mob.Mob;
@@ -50,6 +50,10 @@ public class GUI extends Controller
         if(input.c1.typed)
         {
         	weapon = new BubbleGun(GreenBubble.class); 
+        }
+        if(input.c2.typed)
+        {
+        	weapon = new Jumper(); 
         }
         
         if(weapon != null)
@@ -174,6 +178,10 @@ public class GUI extends Controller
 		}
 	}
 
+	public Input getInput()
+	{
+		return input;
+	}
 	public long getWorldX()
 	{
 		double x = (getMobCY()>0 ? Game.WIDTH-Game.scale*input.x : Game.scale*input.x);

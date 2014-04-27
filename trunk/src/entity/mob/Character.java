@@ -1,16 +1,14 @@
 package entity.mob;
 
-import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.image.AreaAveragingScaleFilter;
-import java.awt.image.FilteredImageSource;
-import java.awt.image.ImageObserver;
 
 import main.Game;
 import main.Pictures;
 import main.World;
+import weapon.Jumper;
 import GUI.GUI;
+import entity.Entity;
 import entity.mob.controllers.Group;
 
 public class Character extends Mob
@@ -32,40 +30,8 @@ public class Character extends Mob
 		group = Group.villians;
 	}
 	
-//	@Override
-//	public void damage(int damage, int knockback, double dir)
-//	{
-//		if(cooldownAfterDamage>0) return;
-//		super.damage(damage, knockback, dir);
-//		cooldownAfterDamage = 12;
-//	}
-	
-//    @Override
-//    public void tick()
-//    {
-//    	super.tick();
-////	    cooldownAfterDamage--;
-//    	
-//    	for(int q=0;q<10;q++)
-//    	{
-//    		double angle = Math.PI*2*Math.random();
-//    		double persent = Math.random();
-//    		long sx = (long) (x+(Math.cos(angle)*persent+1)*getWidth()/2);
-//    		long sy = (long) (y+(Math.sin(angle)*persent+1)*getHeight()/2);
-//    		new Spark(sx, sy, world);
-//    	}
-//    	
-//    	if(Math.random()>0.99)
-//    	{
-//    		double angle = Math.PI*2*Math.random();
-//    		long wx = (long) (x+getWidth()/2+(Math.cos(angle))*getWidth()*5);
-//    		long wy = (long) (y+getHeight()/2+(Math.sin(angle))*getHeight()*5);
-//    		new Wind(wx, wy, world);
-//    	}
-//    }
-	
 	private int stamina = 0;
-	private static int maxStamina = 240;
+	private static int maxStamina = 20;
 	
 	int time = 0;
 	@Override
@@ -73,23 +39,20 @@ public class Character extends Mob
 	{
 		super.tick();
 		if(stamina < maxStamina) stamina++;;
-		time++;		
+		time++;
+	}
+	@Override
+	public void interactOn(Entity e)
+	{
+		super.interactOn(e);
+		if((getGUI().getWeapon() instanceof Jumper) && getGUI().getInput().lmb && stamina == maxStamina)
+		{
+			stamina = 0;
+			e.lvx += Math.cos(getGUI().getAngle())*Jumper.power;
+			e.lvy += Math.sin(getGUI().getAngle())*Jumper.power;
+		}
 	}
     
-//    private static double shiftPower = 100;
-//    @Override
-//	public void shift()
-//	{
-//		if(stamina < 150) return;
-//		double r = Math.sqrt(lvx*lvx+lvy*lvy);
-//		if(r == 0) return;
-//		double dx = lvx / r;
-//		double dy = lvy / r;
-//		lvx += shiftPower*Math.signum(lvx);
-//		lvy += shiftPower * dy;
-//		stamina -= 150;
-//	}
-	
 	protected Image img;
     @Override
     protected void initPictures() 
