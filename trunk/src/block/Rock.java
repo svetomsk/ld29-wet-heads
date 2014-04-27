@@ -7,7 +7,7 @@ public class Rock extends Block{
 	public static final double elasticity = 0;
 	public static final int damage = 0;
 	public int strength = 1;
-	public static Color color = Color.decode("#7f7f7f");
+	public static Color color = Color.decode("#5f5f5f");
 	public static final boolean collidable = true;
 	
 	public Rock()

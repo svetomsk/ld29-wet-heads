@@ -23,8 +23,10 @@ import block.Block;
 import entity.mob.Angel;
 import entity.mob.ArchAngel;
 import entity.mob.Butterfly;
-import entity.mob.Mob;
 import entity.mob.Character;
+import entity.mob.GreenPlayer;
+import entity.mob.Mob;
+import entity.mob.PurplePlayer;
 import entity.mob.mignons.Mignon;
 
 public class Entity {
@@ -387,6 +389,8 @@ public class Entity {
 	protected boolean interactOnMob(Mob mob)
 	{
 		if(mob instanceof Character) return interactOnCharacter((Character) mob);
+		if(mob instanceof GreenPlayer) return interactOnGreenPlayer((GreenPlayer) mob);
+		if(mob instanceof PurplePlayer) return interactOnPurplePlayer((PurplePlayer) mob);
 		
 		if(mob instanceof Butterfly) return interactOnButterfly((Butterfly) mob);
 		if(mob instanceof Mignon) return interactOnMignon((Mignon) mob);
@@ -396,6 +400,9 @@ public class Entity {
 	}
 	
 	protected boolean interactOnCharacter(Character character){return true;}
+	protected boolean interactOnGreenPlayer(GreenPlayer greenPlayer){return true;}
+	protected boolean interactOnPurplePlayer(PurplePlayer character){return true;}
+	
 	protected boolean interactOnButterfly(Butterfly butterfly){return true;}
 	protected boolean interactOnMignon(Mignon mignon){return true;}
 	protected boolean interactOnChest(Chest chest){return true;}

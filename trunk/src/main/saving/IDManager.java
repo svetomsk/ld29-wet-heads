@@ -22,6 +22,8 @@ import entity.mob.ArchAngel;
 import entity.mob.Butterfly;
 import entity.mob.Character;
 import entity.mob.Creator;
+import entity.mob.GreenPlayer;
+import entity.mob.PurplePlayer;
 import entity.mob.mignons.DamageMignon;
 import entity.mob.mignons.DarkMignon;
 import entity.mob.mignons.JumpMignon;
@@ -37,6 +39,8 @@ public class IDManager
 			put(3, ArchAngel.class);
 			put(4, Butterfly.class);
 			put(5, Creator.class);
+			put(6, GreenPlayer.class);
+			put(7, PurplePlayer.class);
 			
 			put(65, Chest.class);
 			put(66, End.class);
@@ -61,6 +65,8 @@ public class IDManager
 			put(ArchAngel.class, 3);
 			put(Butterfly.class, 4);
 			put(Creator.class, 5);
+			put(GreenPlayer.class, 6);
+			put(PurplePlayer.class, 7);
 			
 			put(Chest.class, 65);
 			put(End.class, 66);

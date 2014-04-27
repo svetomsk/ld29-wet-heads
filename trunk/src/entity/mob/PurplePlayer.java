@@ -43,7 +43,7 @@ public class PurplePlayer extends Mob
 	private int stamina = 0;
 	private static int maxStamina = 240;
 	
-	int time = 0;
+	int time = (int) (1000*Math.random());
 	@Override
 	public void tick()
 	{
