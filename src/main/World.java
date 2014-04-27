@@ -43,33 +43,6 @@ public class World
 		particles = new ArrayList<Particle>();
 	}
 
-	public void createLevel()
-	{
-//		ArrayList<Integer> mobsCoords = ImageParser.coords();
-//		character = new Character(mobsCoords.get(0), mobsCoords.get(1));
-//		new Island(0, 3000, 0, 0);
-		parseInput();
-
-//		Random r = new Random();
-//		for(int q=0;q<100;q++)
-//		{
-//			new Island((int)(5000*r.nextGaussian()), (int)(-7000*r.nextGaussian()), (int)(12*r.nextDouble()), (int)(12*r.nextDouble()));
-//		}
-	}
-
-	private void parseInput()
-	{
-		byte[][] arr = ImageParser.parseBlocks("resources/firstIsland.png");
-		new Island(0, 0, 0, 0, this, arr);
-	}
-
-	public void parseInputForEntities()
-	{
-		byte[][] arr = ImageParser.getArr();//parseBlocks("resources/firstIsland.png");
-		Entity.parse(arr, this);
-		findCharacter();
-	}
-
 	public void findCharacter()
 	{
 		for (Entity e : entities)

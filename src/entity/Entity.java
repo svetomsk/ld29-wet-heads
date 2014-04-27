@@ -17,15 +17,14 @@ import javax.swing.JTextField;
 import main.Game;
 import main.Island;
 import main.Pictures;
-import main.PrintString;
 import main.World;
 import main.saving.IDManager;
 import block.Block;
 import entity.mob.Angel;
 import entity.mob.ArchAngel;
 import entity.mob.Butterfly;
-import entity.mob.Character;
 import entity.mob.Mob;
+import entity.mob.Character;
 import entity.mob.mignons.Mignon;
 
 public class Entity {
@@ -388,6 +387,7 @@ public class Entity {
 	protected boolean interactOnMob(Mob mob)
 	{
 		if(mob instanceof Character) return interactOnCharacter((Character) mob);
+		
 		if(mob instanceof Butterfly) return interactOnButterfly((Butterfly) mob);
 		if(mob instanceof Mignon) return interactOnMignon((Mignon) mob);
 		if(mob instanceof Chest) return interactOnChest((Chest) mob);

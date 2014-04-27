@@ -13,7 +13,7 @@ import main.World;
 import GUI.GUI;
 import entity.mob.controllers.Group;
 
-public class Character extends Mob
+public class GreenPlayer extends Mob
 {
 //	public int cooldownAfterDamage;
 	private GUI control;
@@ -40,29 +40,6 @@ public class Character extends Mob
 //		cooldownAfterDamage = 12;
 //	}
 	
-//    @Override
-//    public void tick()
-//    {
-//    	super.tick();
-////	    cooldownAfterDamage--;
-//    	
-//    	for(int q=0;q<10;q++)
-//    	{
-//    		double angle = Math.PI*2*Math.random();
-//    		double persent = Math.random();
-//    		long sx = (long) (x+(Math.cos(angle)*persent+1)*getWidth()/2);
-//    		long sy = (long) (y+(Math.sin(angle)*persent+1)*getHeight()/2);
-//    		new Spark(sx, sy, world);
-//    	}
-//    	
-//    	if(Math.random()>0.99)
-//    	{
-//    		double angle = Math.PI*2*Math.random();
-//    		long wx = (long) (x+getWidth()/2+(Math.cos(angle))*getWidth()*5);
-//    		long wy = (long) (y+getHeight()/2+(Math.sin(angle))*getHeight()*5);
-//    		new Wind(wx, wy, world);
-//    	}
-//    }
 	
 	private int stamina = 0;
 	private static int maxStamina = 240;
@@ -76,20 +53,6 @@ public class Character extends Mob
 		time++;		
 	}
     
-//    private static double shiftPower = 100;
-//    @Override
-//	public void shift()
-//	{
-//		if(stamina < 150) return;
-//		double r = Math.sqrt(lvx*lvx+lvy*lvy);
-//		if(r == 0) return;
-//		double dx = lvx / r;
-//		double dy = lvy / r;
-//		lvx += shiftPower*Math.signum(lvx);
-//		lvy += shiftPower * dy;
-//		stamina -= 150;
-//	}
-	
 	private Image img;
     @Override
     protected void initPictures() 
