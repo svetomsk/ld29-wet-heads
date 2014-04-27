@@ -259,16 +259,19 @@ public class Game extends Canvas implements Runnable
             
             if(getGUI().getMobCY() >= 0)
             {
-            	g.rotate(Math.PI, WIDTH/2, HEIGHT/2);
+            	g.rotate(Math.PI, basicWIDTH/2, basicHEIGHT/2);
             }
             g.scale(1/scale, 1/scale);            
-            world.draw(g);            
+            world.draw(g);           
+            
             g.setColor(Color.ORANGE);
-            g.drawLine(-x-160000, -y, -x+160000, -y);            
+            g.drawLine(-x-160000, -y, -x+160000, -y);
+            
+                        
             g.scale(scale, scale);
             if(getGUI().getMobCY() >= 0)
             {
-            	g.rotate(Math.PI, WIDTH/2, HEIGHT/2);
+            	g.rotate(Math.PI, basicWIDTH/2, basicHEIGHT/2);
             }
             
             gui.draw(g);

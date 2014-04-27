@@ -45,12 +45,12 @@ public class Creator extends Mob
 	@Override
 	public void onUp() 
 	{
-		lvy--;
+		lvy += Math.signum(getCY());
 	}
 	@Override
 	public void onDown() 
 	{
-		lvy++;
+		lvy -= Math.signum(getCY());
 	}
 	@Override
 	protected void slowly()
@@ -69,15 +69,16 @@ public class Creator extends Mob
     @Override
     public void draw(Graphics2D g)
     {
-    	
     	int drawx = (int) (x-Game.x+width/2);
     	int drawy = (int) (y-Game.y+height/2);
 
 		double angle = getAngle(lvx, lvy);
 		  
+		if(getCY()>0)g.rotate(Math.PI, drawx, drawy);
 		g.rotate(angle, drawx, drawy);
 		g.drawImage(img[currentFrame], drawx-img[currentFrame].getWidth(null)/2, drawy-img[currentFrame].getHeight(null)/2, null);
 		g.rotate(-angle, drawx, drawy);
+		if(getCY()>0)g.rotate(Math.PI, drawx, drawy);
     }
     
     public CreatorGUI getCGUI()
