@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import main.Game;
 import main.Island;
 import main.Pictures;
+import main.PrintString;
 import main.World;
 import main.saving.IDManager;
 import block.Block;
@@ -34,8 +35,8 @@ public class Entity {
 	public double lvx, lvy;
 	protected double gvx, gvy;
 	
-	protected static int height = 50;
-	protected static int width = 50;
+	protected static int height = 64;
+	protected static int width = 64;
 	
 	protected boolean isDeleted = false;
 	
@@ -243,6 +244,7 @@ public class Entity {
 	protected boolean collideIslands(boolean verticalWalls)
 	{		
 		boolean isCollide = false;
+		double previousLVY = lvy;
 		for(Island island:world.islands)
 		{
 			int BLOCK_SIZE = world.BLOCK_SIZE;
@@ -343,7 +345,7 @@ public class Entity {
 		
 		if(isCollide && lvy<0 && lvy>=-4*world.GRAVITY) lvy = 0; // Затухание лишних колебаний
 		
-		if(!verticalWalls && isCollide) onGround = true;
+		if(!verticalWalls && isCollide && (getCY()*previousLVY<0)) onGround = true;
 		if(verticalWalls && isCollide) onWall = true;
 		
 		return isCollide;
@@ -510,9 +512,14 @@ public class Entity {
 				+(e1.getCY()+e1.getHeight()/2-e2.getCY()-e2.getHeight()/2)
 				*(e1.getCY()+e1.getHeight()/2-e2.getCY()-e2.getHeight()/2);
 	}
+	
+	/** Returns actual X coordinate of entitie's center */
 	public long getCX() {return x + getWidth()/2;}
+	/** Returns actual Y coordinate of entitie's center */
 	public long getCY() {return y + getHeight()/2;}
+	/** Returns actual X coordinate of left-up corner of entity */
 	public long getX() {return x;}
+	/** Returns actual Y coordinate of left-up corner of entity */
 	public long getY() {return y;}
 	
 	public double getLVX() {return lvx;}

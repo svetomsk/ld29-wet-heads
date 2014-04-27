@@ -32,7 +32,6 @@ public class World
 	public World()
 	{
 		clear();
-
 //		createLevel();
 		Game.pic = new Pictures();
 	}
@@ -237,7 +236,15 @@ public class World
 		}
 		for (Entity e : entities)
 		{
+			if(e.getCY() > 0)
+			{
+				g.rotate(Math.PI, e.getCX()-Game.x, e.getCY()-Game.y);
+			}
 			e.draw(g);
+			if(e.getCY() > 0)
+			{
+				g.rotate(Math.PI, e.getCX()-Game.x, e.getCY()-Game.y);
+			}
 		}
 		for (Particle p : particles)
 		{

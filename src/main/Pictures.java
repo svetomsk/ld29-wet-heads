@@ -14,8 +14,9 @@ import javax.imageio.ImageIO;
 
 public class Pictures 
 {
-    public static Image roll[] = loadAndCut("resources/roll.png", 6, 256);
+	public static Image roll[] = loadAndCut("resources/roll.png", 6, 256);
     public static Image creator[] = loadAndCut("resources/creator.png", 6, 256);
+    
     
     public static Image angel[] = loadAndCut("resources/angel.png", 6, 64);
     public static Image chest[] = loadAndCut("resources/chest.png", 6, 32);
@@ -28,18 +29,29 @@ public class Pictures
     public static Image blood;
     public static Image pause;
     
+    public static Image greenPlayer;
+    public static Image purplePlayer;
+    
     public Pictures()
     {
         try 
         {
-            pause = ImageIO.read(new File("resources/pause.png"));
+        	pause = ImageIO.read(new File("resources/pause.png"));
             blood = ImageIO.read(new File("resources/blood.png"));
+            
+            greenPlayer = ImageIO.read(new File("resources/GreenPlayer.png"));
+            purplePlayer = ImageIO.read(new File("resources/PurplePlayer.png"));
             
             Canvas s = new Canvas();
             AreaAveragingScaleFilter aasf = new AreaAveragingScaleFilter((int)128, (int) 128);
             
             aasf = new AreaAveragingScaleFilter(12, 12);
-            blood= s.createImage(new FilteredImageSource(blood.getSource(), aasf));
+            blood = s.createImage(new FilteredImageSource(blood.getSource(), aasf));
+            
+            aasf = new AreaAveragingScaleFilter(52, 52);
+            greenPlayer = s.createImage(new FilteredImageSource(greenPlayer .getSource(), aasf));
+            purplePlayer = s.createImage(new FilteredImageSource(purplePlayer.getSource(), aasf));
+            
         } catch (IOException ex) {
             Logger.getLogger(Pictures.class.getName()).log(Level.SEVERE, null, ex);
         }

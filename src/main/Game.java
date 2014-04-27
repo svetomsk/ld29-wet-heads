@@ -172,7 +172,7 @@ public class Game extends Canvas implements Runnable
     public void run() 
     {
 //    	init();
-    	int fps = 60;
+    	int fps = 45;
     	int maxSkipFrames = 10;
     	
     	int nsPerFrame = 1000000000 / fps;
@@ -256,17 +256,20 @@ public class Game extends Canvas implements Runnable
             g.setColor(Color.WHITE);
             g.fillRect(0, 0, getWidth(), getHeight());
 
-            g.scale(1/scale, 1/scale);
             
-            world.draw(g);
-            
+            if(getGUI().getMobCY() >= 0)
+            {
+            	g.rotate(Math.PI, WIDTH/2, HEIGHT/2);
+            }
+            g.scale(1/scale, 1/scale);            
+            world.draw(g);            
             g.setColor(Color.ORANGE);
-            g.drawLine(-x-160000, -y, -x+160000, -y);
-//            g.setColor(new Color((float)(1-world.character.hp), (float)world.character.hp, (float)0.0));
-//            g.fillRect(32, 32, (int)(world.character.hp * WIDTH/3), 8);
-            
+            g.drawLine(-x-160000, -y, -x+160000, -y);            
             g.scale(scale, scale);
-            
+            if(getGUI().getMobCY() >= 0)
+            {
+            	g.rotate(Math.PI, WIDTH/2, HEIGHT/2);
+            }
             
             gui.draw(g);
             PrintString.drawPrinting(g);
@@ -274,6 +277,7 @@ public class Game extends Canvas implements Runnable
             g.setColor(Color.BLACK);
             g.drawString(frames, basicWIDTH - frames.length() * 12, 12);
 
+            
             g.dispose();
             bs.show();
         }
@@ -454,7 +458,7 @@ public class Game extends Canvas implements Runnable
         			try
 					{
         				//TODO
-						startGame(Date.load("resources/maps/1.dat"));
+						startGame(Date.load("resources/maps/LD29.dat"));
 					} catch (IOException e)
 					{
 						e.printStackTrace();
