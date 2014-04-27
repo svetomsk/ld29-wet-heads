@@ -194,14 +194,6 @@ public class CreatorGUI extends GUI
 	{
 		return input.y;
 	}
-	public long getWorldX()
-	{
-		return (long) (Game.x+(getMobCY()>0 ? Game.WIDTH-Game.scale*input.x : Game.scale*input.x));
-	}
-	public long getWorldY()
-	{
-		return (long) (Game.y+(getMobCY()>0 ? Game.HEIGHT-Game.scale*input.y : Game.scale*input.y));
-	}
 	
 	public void setLMB(Tool tool)
 	{
