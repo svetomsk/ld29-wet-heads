@@ -1,5 +1,6 @@
 package block;
 
+import entity.Entity;
 import java.awt.Color;
 
 public class Green extends Block{
@@ -13,7 +14,8 @@ public class Green extends Block{
 	public Green()
 	{
 		
-	}
+	}       
+        
 	@Override
 	public Color getColor()
 	{
