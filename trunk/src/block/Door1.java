@@ -2,7 +2,7 @@ package block;
 
 import java.awt.Color;
 
-public class Door extends Block{
+public class Door1 extends Block{
 	
 	public static final double elasticity = 0;
 	public static final int damage = 0;
@@ -10,7 +10,7 @@ public class Door extends Block{
 	public static Color color = Color.decode("#24b14c");
 	public static final boolean collidable = true;
 	
-	public Door()
+	public Door1()
 	{
 		
 	}
