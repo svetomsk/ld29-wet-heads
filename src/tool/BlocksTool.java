@@ -30,6 +30,7 @@ public class BlocksTool extends Tool
 	@Override
 	public void use(World world, long x, long y)
 	{
+                System.out.println(bid);
 		Island isl = world.getIsland(x, y);
 		if(isl == null) return;
 		int bx = (int) ((x-isl.getX())/world.BLOCK_SIZE);

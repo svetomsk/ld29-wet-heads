@@ -70,7 +70,7 @@ public class Block {
 //					continue;
 //				}
 //				----------------------
-				if(byt > 8)
+				if(byt > 9)
 				{
 					res[q][w] = res[q-1][w];
 				}
