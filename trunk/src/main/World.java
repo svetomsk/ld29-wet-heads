@@ -110,11 +110,11 @@ public class World {
             }
         }
 
-//        for(int q=0;q<islands.size();q++)
-//        {
-//        	Island island = islands.get(q);
-//        	island.tick();
-//        }
+        for(int q=0;q<islands.size();q++)
+        {
+        	Island island = islands.get(q);
+        	island.tick();
+        }
     }
 
     public boolean collideIslands(double x, double y) {

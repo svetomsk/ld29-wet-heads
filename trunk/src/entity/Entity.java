@@ -20,6 +20,7 @@ import main.Pictures;
 import main.World;
 import main.saving.IDManager;
 import block.Block;
+import block.Green;
 import entity.mob.Angel;
 import entity.mob.ArchAngel;
 import entity.mob.Butterfly;
@@ -27,6 +28,7 @@ import entity.mob.Character;
 import entity.mob.GreenPlayer;
 import entity.mob.Mob;
 import entity.mob.PurplePlayer;
+import entity.mob.controllers.Controller;
 import entity.mob.mignons.Mignon;
 
 public class Entity {
@@ -303,7 +305,7 @@ public class Entity {
 				
 				if(id == 0) continue;
 				interactOn(id);
-				island.tickBlock(qb, wb);
+				island.tickBlock(this, qb, wb);
 			}
 			
 			if(collide)
@@ -348,7 +350,7 @@ public class Entity {
 			isCollide |= collide;
 		}
 		
-		if(isCollide && lvy<0 && lvy>=-4*world.GRAVITY) lvy = 0; // Затухание лишних колебаний
+		if(isCollide && lvy<0 && lvy>=-4*world.GRAVITY) lvy = 0; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		
 		if(!verticalWalls && isCollide && (getCY()*previousLVY<0)) onGround = true;
 		if(verticalWalls && isCollide) onWall = true;
@@ -370,7 +372,7 @@ public class Entity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+                
 		if(!block.getCollidable()) return;
 			
 		elasticity = Math.max(elasticity, block.getElasticity());
@@ -504,7 +506,7 @@ public class Entity {
 		}
 	}
 	
-	// Надо куда-нибудь перетащить это.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
 	public static double getAngle(double dx, double dy)
 	{
 		double l = Math.sqrt(dx*dx+dy*dy);

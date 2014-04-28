@@ -5,13 +5,14 @@ import java.awt.Graphics2D;
 
 import main.saving.IDManager;
 import block.Block;
-import block.Dirt;
 import block.Green;
+import block.Purple;
 import block.Rock;
 import block.decor.Background;
-import block.decor.Decor;
 import block.decor.Ghost_Rock;
-import block.decor.Grass;
+import entity.Entity;
+import entity.GreenDestroyer;
+import entity.PurpleDestroyer;
 
 public class Island {
 
@@ -49,15 +50,20 @@ public class Island {
         world.islands.add(this);
     }
 
-    public void tick() {
+    public void tick() {        
         addVelocity();
     }
 
-    public void tickBlock(int x, int y) {
+    public void tickBlock(Entity e, int x, int y) {
         if (blocks[x][y] == IDManager.getBlockID(Ghost_Rock.class)) {
             blocks[x][y] = IDManager.getBlockID(Background.class);
+        }        
+        
+        if((e instanceof PurpleDestroyer && IDManager.getBlockID(Purple.class) == blocks[x][y])        
+         || (e instanceof GreenDestroyer && IDManager.getBlockID(Green.class) == blocks[x][y]) )
+        {
+            blocks[x][y] = 0;
         }
-
 //		Block block = blocks[x][y];
 //		if(block == null) return;
 //		blocks[x][y].tick();
