@@ -1,18 +1,20 @@
 package entity;
 
-import block.Dirt;
-import block.Door;
-import block.Rock;
+import block.Door2;
 import entity.mob.Character;
 import main.World;
 
-public class Key extends Entity
+public class Key2 extends Entity
 {
-
+        public Key2()
+        {
+            
+        }
 	@Override
 	protected boolean interactOnCharacter(Character character)
 	{
-		World.islands.get(0).removeBlock(Door.class);                
+		World.islands.get(0).removeBlock(Door2.class);           
+                delete();
 		return true;
 	}
 

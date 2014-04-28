@@ -14,10 +14,13 @@ import weapon.BubbleGun;
 import weapon.Jumper;
 import weapon.Weapon;
 import entity.GreenBubble;
+import entity.PurpleBubble;
+import entity.mob.GreenPlayer;
 import entity.mob.Mob;
 import entity.mob.controllers.Controller;
 import entity.mob.mignons.DarkMignon;
 import entity.mob.mignons.Mignon;
+import main.PrintString;
 
 public class GUI extends Controller
 {
@@ -49,7 +52,15 @@ public class GUI extends Controller
     	//----------------------------------------------------------
         if(input.c1.typed)
         {
-        	weapon = new BubbleGun(GreenBubble.class); 
+            
+                if(this.mob instanceof GreenPlayer)
+                {
+                    weapon = new BubbleGun(GreenBubble.class); 
+                }
+                else 
+                {
+                    weapon = new BubbleGun(PurpleBubble.class);
+                }
         }
         if(input.c2.typed)
         {

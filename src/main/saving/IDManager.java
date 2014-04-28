@@ -8,7 +8,8 @@ import items.seeds.LightMignonSeed;
 import java.util.HashMap;
 
 import block.Dirt;
-import block.Door;
+import block.Door1;
+import block.Door2;
 import block.Green;
 import block.Lava;
 import block.Purple;
@@ -19,7 +20,8 @@ import block.decor.Wood;
 import entity.Chest;
 import entity.End;
 import entity.GreenBubble;
-import entity.Key;
+import entity.Key1;
+import entity.Key2;
 import entity.mob.Angel;
 import entity.mob.ArchAngel;
 import entity.mob.Butterfly;
@@ -45,7 +47,8 @@ public class IDManager
 			put(6, GreenPlayer.class);
 			put(7, PurplePlayer.class);
 			
-                        put(64, Key.class);
+                        put(63, Key1.class);
+                        put(64, Key2.class);
 			put(65, Chest.class);
 			put(66, End.class);
 			put(67, GreenBubble.class);
@@ -73,7 +76,8 @@ public class IDManager
 			put(GreenPlayer.class, 6);
 			put(PurplePlayer.class, 7);
 			
-                        put(Key.class, 64);
+                        put(Key1.class, 63);
+                        put(Key2.class, 64);
 			put(Chest.class, 65);
 			put(End.class, 66);
 			put(GreenBubble.class, 67);
@@ -125,7 +129,8 @@ public class IDManager
 			put((byte) 6, Green.class);
 			put((byte) 7, Wood.class);
 			put((byte) 8, Background.class);
-                        put((byte) 9, Door.class);
+                        put((byte) 9, Door1.class);
+                        put((byte) 10, Door2.class);
 		}
 	};
 	
@@ -140,7 +145,8 @@ public class IDManager
 			put(Green.class, (byte) 6);
 			put(Wood.class, (byte) 7);
 			put(Background.class, (byte) 8);
-                        put(Door.class, (byte) 9);
+                        put(Door1.class, (byte) 9);
+                        put(Door2.class, (byte) 10);
 		}
 	};
 	
