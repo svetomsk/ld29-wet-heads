@@ -14,11 +14,10 @@ import main.World;
 import entity.mob.Character;
 import entity.mob.Mob;
 import entity.mob.controllers.Controller;
-import entity.mob.mignons.Mignon;
 
 public class Chest extends Mob{
 
-	private ArrayList<Item> items = new ArrayList<Item>();
+	private ArrayList<Item> items = new ArrayList<>();
 	
 	@Override
 	public void finalInit(World world)

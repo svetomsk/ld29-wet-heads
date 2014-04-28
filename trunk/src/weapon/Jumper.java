@@ -4,7 +4,7 @@ import main.World;
 
 public class Jumper extends Weapon
 {
-	public static final int power = 64;
+	public static final int power = 48;
 	public Jumper()
 	{
 		
